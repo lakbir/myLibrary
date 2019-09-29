@@ -1,19 +1,26 @@
-<div class="row">
-  <div class="col-sm-8 col-sm-offset-2">
-    <h2>Connexion</h2>
-    <form [formGroup]="signInForm" (ngSubmit)="onSubmit()">
-      <div class="form-goup">
-        <label for="email">Email</label>
-        <input type="text" class="form-control" formControlName="email" id="email" >
+<div class="container">
+  <div class="card card-login mx-auto mt-5">
+    <div class="card-header">Connexion</div>
+    <div class="card-body">
+      <form [formGroup]="signInForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <div class="form-label-group">
+            <input type="email" formControlName="email" id="email" class="form-control" placeholder="Email address" autofocus="autofocus">
+            <label for="email">Email address</label>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="form-label-group">
+            <input type="password" formControlName="password" id="password" class="form-control" placeholder="Password">
+            <label for="password">Password</label>
+          </div>
+        </div>
+        <button class="btn btn-primary btn-block" type="submit" [disabled]="signInForm.invalid">Connexion</button>
+      </form>
+      <p class="text-danger">{{errorMessage}}</p>
+      <div class="text-center">
+        <a class="d-block small mt-3" href="register.html">Register an Account</a>
       </div>
-
-      <div class="form-goup">
-        <label for="password">Mot de passe</label>
-        <input type="password" class="form-control" formControlName="password" id="password" >
-      </div>
-      <br><br>
-      <button class="btn btn-primary" type="submit" [disabled]="signUpForm.invalid">Connexion</button>
-    </form>
-    <p class="text-danger">{{errorMessage}}</p>
+    </div>
   </div>
 </div>

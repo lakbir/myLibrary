@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
-import {Book} from '../models/book.module';
+import {BookModule} from '../models/book.module';
 import {Subject} from 'rxjs';
 import * as firebase from 'firebase';
 @Injectable({
   providedIn: 'root'
 })
 export class BooksService {
-  books: Book[] = [];
-  booksSubject = new Subject<Book[]>();
+  books: BookModule[] = [];
+  booksSubject = new Subject<BookModule[]>();
 
   constructor() { }
   emitBooks() {
@@ -36,12 +36,12 @@ export class BooksService {
       }
     );
   }
-  createNewBook(newBook: Book) {
+  createNewBook(newBook: BookModule) {
     this.books.push(newBook);
     this.saveBooks();
     this.emitBooks();
   }
-  removeBook(book: Book) {
+  removeBook(book: BookModule) {
     if (book.photo) {
       const storageRef = firebase.storage().refFromURL(book.photo);
       storageRef.delete().then(
@@ -50,7 +50,7 @@ export class BooksService {
         }
       ).catch(
         (error) => {
-          console.log('Photo non touve : ' + error);
+          console.log('Photo non touvee : ' + error);
         }
       );
     }

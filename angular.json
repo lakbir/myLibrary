@@ -46,10 +46,23 @@
               "src/assets"
             ],
             "styles": [
-              "node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "src/styles.scss"
+              "src/styles.scss",
+              "src/css/sb-admin.css",
+              "src/vendor/fontawesome-free/css/all.min.css"
             ],
-            "scripts": [],
+            "scripts": [
+              "src/vendor/jquery/jquery.min.js",
+              "src/vendor/bootstrap/js/bootstrap.bundle.min.js",
+              "src/vendor/jquery-easing/jquery.easing.min.js",
+              "src/vendor/chart.js/Chart.min.js",
+              "src/vendor/datatables/jquery.dataTables.js",
+              "src/vendor/datatables/dataTables.bootstrap4.js",
+              "src/js/sb-admin.min.js",
+              "src/js/demo/datatables-demo.js",
+              "src/js/demo/chart-area-demo.js",
+              "src/js/demo/chart-bar-demo.js",
+              "src/js/demo/chart-pie-demo.js"
+            ],
             "es5BrowserSupport": true
           },
           "configurations": {

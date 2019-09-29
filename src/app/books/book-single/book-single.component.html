@@ -1,3 +1,10 @@
-<p>
-  book-single works!
-</p>
+<div class="row">
+  <div class="col-xs-3">
+    <img style="max-width: 400px;max-height: 400px;float: center;" *ngIf="book.photo" [src]="book.photo">
+    <h1>{{ book.title }}</h1>
+    <h3>{{ book.author }}</h3>
+    <p>{{book.description}}</p>
+    <button class="btn btn-default" (click)="onBack()">Retour</button>
+    <a class="btn btn-success pull-right" [href]="book.fichier" target="_blank"> <span class="glyphicon glyphicon-download"></span> Telecharger</a>
+  </div>
+</div>

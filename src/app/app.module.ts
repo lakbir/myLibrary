@@ -14,14 +14,32 @@ import {BooksService} from './services/books.service';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {RouterModule, Routes} from '@angular/router';
+import { DefaultViewComponent } from './default-view/default-view.component';
+import {NotFoundComponent} from "./not-found/not-found.component";
+import { SidebarComponent } from './sidebar/sidebar.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { ArticleListComponent } from './article/article-list/article-list.component';
+import { HistoireListComponent } from './histoire/histoire-list/histoire-list.component';
+import { AuteurListComponent } from './auteur/auteur-list/auteur-list.component';
+import { UserListComponent } from './user/user-list/user-list.component';
+import { MonProfileComponent } from './profile/mon-profile/mon-profile.component';
+import {CategorieListComponent} from "./categorie/categorie-list/categorie-list.component";
 const appRoutes: Routes = [
   {path: 'auth/signup', component: SignupComponent},
   {path: 'auth/signin', component: SigninComponent},
+  {path: 'notfound', component: NotFoundComponent},
   {path: 'books', canActivate: [AuthGuardService], component: BookListComponent},
+  {path: 'monprofile', canActivate: [AuthGuardService], component: MonProfileComponent},
+  {path: 'histoires', canActivate: [AuthGuardService], component: HistoireListComponent},
+  {path: 'users', canActivate: [AuthGuardService], component: UserListComponent},
+  {path: 'auteurs', canActivate: [AuthGuardService], component: AuteurListComponent},
+  {path: 'articles', canActivate: [AuthGuardService], component: ArticleListComponent},
+  {path: 'mylibrary', canActivate: [AuthGuardService], component: DefaultViewComponent},
+  {path: 'categories', canActivate: [AuthGuardService], component: CategorieListComponent},
   {path: 'books/new', canActivate: [AuthGuardService], component: BookFormComponent},
   {path: 'books/view/:id', canActivate: [AuthGuardService], component: BookSingleComponent},
-  {path: '', redirectTo: 'books', pathMatch: 'full'},
-  {path: '**', redirectTo: 'books'}
+  {path: '', redirectTo: 'mylibrary', pathMatch: 'full'},
+  {path: '**', redirectTo: 'notfound'}
 ];
 @NgModule({
   declarations: [
@@ -31,7 +49,17 @@ const appRoutes: Routes = [
     BookListComponent,
     BookSingleComponent,
     BookFormComponent,
-    HeaderComponent
+    HeaderComponent,
+    DefaultViewComponent,
+    NotFoundComponent,
+    SidebarComponent,
+    NavbarComponent,
+    ArticleListComponent,
+    HistoireListComponent,
+    AuteurListComponent,
+    UserListComponent,
+    MonProfileComponent,
+    CategorieListComponent
   ],
   imports: [
     BrowserModule,
