@@ -1,0 +1,18 @@
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">
+    <a routerLink="/mylibrary">My Library</a>
+  </li>
+  <li class="breadcrumb-item active">Mon Profile</li>
+</ol>
+<div class="container">
+  <div class="card">
+    <img class="img-thumbnail" [src]="userCurrent.photoUrl" alt="profile image" style="width:25%">
+    <div class="card-body">
+      <h4 class="card-title">{{userCurrent.name}}</h4>
+      <h6>{{userCurrent.email}}</h6>
+      <h6>{{userCurrent.phone}}</h6>
+      <p class="card-text">Some example text some example text. John Doe is an architect and engineer</p>
+      <a routerLink="/updateprofile" class="btn btn-primary">Modifier</a>
+    </div>
+  </div>
+</div>

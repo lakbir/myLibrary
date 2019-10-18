@@ -18,7 +18,6 @@ export class NavbarComponent implements OnInit {
       (user) => {
         if (user) {
           this.isAuth = true;
-          console.log('Current user : ' + firebase.auth().currentUser.displayName);
         } else {
           this.isAuth = false;
         }

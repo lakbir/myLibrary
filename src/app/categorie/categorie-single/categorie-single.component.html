@@ -1,0 +1,25 @@
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">
+    <a routerLink="/mylibrary">My Library</a>
+  </li>
+  <li class="breadcrumb-item active">
+    <a routerLink="/categories">Catégories</a>
+  </li>
+  <li class="breadcrumb-item active">
+    {{categorie.categorie}}
+  </li>
+</ol>
+<div class="card" style="width: 100%;">
+  <div class="card-body">
+    <h5 class="card-title">
+      {{categorie.categorie}}
+    </h5>
+    <p class="card-text">{{categorie.description}}</p>
+    <hr />
+    <div class="d-flex justify-content-between align-items-center">
+      <button class="btn btn-primary" (click)="editerCategorie()">Modifier</button>
+      <small class="text-muted">{{categorie.createdBy}}, {{categorie.dateCreated}}</small>
+    </div>
+
+  </div>
+</div>

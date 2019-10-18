@@ -1,19 +1,90 @@
-<div class="row">
-  <div class="col-sm-8 col-sm-offset-2">
-    <h2>Creer un compte</h2>
-    <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
-      <div class="form-goup">
-        <label for="email">Email</label>
-        <input type="text" class="form-control" formControlName="email" id="email" >
+<div class="container">
+  <div class="card  mx-auto mt-8">
+    <div class="card-header"><h4>Créer un compte</h4>
+      C’est rapide et facile.</div>
+    <div class="card-body">
+
+      <div class="card text-white bg-success mb-7" *ngIf="!showFormInscription">
+        <div class="card-body">
+          <h5 class="card-title">Votre compte a été créé avec succès</h5>
+          <p class="card-text">Vous pouvez accéder à votre compte et se connecter en cliquant <a routerLink="/auth/signin" class="btn btn-primary">ici</a>.</p>
+        </div>
       </div>
 
-      <div class="form-goup">
-        <label for="password">Mot de passe</label>
-        <input type="password" class="form-control" formControlName="password" id="password" >
-      </div>
-      <br><br>
-      <button class="btn btn-primary" type="submit" [disabled]="signUpForm.invalid">Creer mon compte</button>
-    </form>
-    <p class="text-danger">{{errorMessage}}</p>
+      <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()" *ngIf="showFormInscription">
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="nom">Nom</label>
+            <input type="text" class="form-control" formControlName="nom" id="nom" placeholder="Nom">
+          </div>
+          <div class="form-group col-md-6">
+            <label for="prenom">Prénom</label>
+            <input type="text" class="form-control" formControlName="prenom" id="prenom" placeholder="Prénom">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="inputEmail4">Email</label>
+            <input type="email" class="form-control" formControlName="email" id="inputEmail4" placeholder="Email">
+          </div>
+          <div class="form-group col-md-6">
+            <label for="tel">Tel</label>
+            <input type="text" class="form-control" id="tel" placeholder="Tel" formControlName="tel">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="apropos">À propos de toi</label>
+          <textarea rows="2" class="form-control" id="apropos" formControlName="apropos" placeholder="Je suis un jeune de 25 ans, etudi..."></textarea>
+        </div>
+        <div class="form-group">
+          <label for="inputAddress">Address</label>
+          <input type="text" class="form-control" id="inputAddress" formControlName="adress" placeholder="1234 Main St">
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="inputCity">Ville</label>
+            <input type="text" class="form-control" id="inputCity" placeholder="Ville" formControlName="ville">
+          </div>
+          <div class="form-group col-md-6">
+            <label for="inputState">Pays</label>
+            <select id="inputState" class="form-control" formControlName="pays">
+              <option selected>Choose...</option>
+              <option>Maroc</option>
+              <option>France</option>
+              <option>Suise</option>
+              <option>German</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="dateNaissance">Date de naissance</label>
+            <input type="date" class="form-control" id="dateNaissance" formControlName="dateNaissance">
+          </div>
+          <div class="form-group col-md-6">
+            <label for="sexe">Sexe</label>
+            <select id="sexe" class="form-control" formControlName="sexe">
+              <option selected>Choose...</option>
+              <option>Masculin</option>
+              <option>Féminin</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="password">Mot de passe</label>
+            <input type="password" class="form-control" formControlName="password" id="password" placeholder="Mot de passe">
+          </div>
+          <div class="form-group col-md-6">
+            <label for="rpassword">Confirmation mot de passe</label>
+            <input type="password" class="form-control" formControlName="rpassword" (ngModelChange)="validationPassword()" id="rpassword" placeholder="Confirmation">
+          </div>
+        </div>
+        <button class="btn btn-primary" type="submit" style="float:right;" [disabled]="signUpForm.invalid || !validationPasswordV">Créer mon compte</button>
+        <a class="d-block" style="float:right;" routerLink="/auth/signin">Vous avez un compte ?</a>
+      </form>
+      <p class="text-danger">{{errorMessage}}</p>
+      <p class="{{ classConfirmationPass }}" >{{msgConfirmationPass}}</p>
+    </div>
   </div>
 </div>

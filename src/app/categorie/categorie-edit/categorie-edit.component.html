@@ -1,0 +1,33 @@
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">
+    <a routerLink="/mylibrary">My Library</a>
+  </li>
+  <li class="breadcrumb-item active">
+    <a routerLink="/categories">Catégories</a>
+  </li>
+  <li class="breadcrumb-item active">
+    Edit Catégorie
+  </li>
+</ol>
+<div class="container">
+  <div class="card card-login mx-auto mt-5">
+    <div class="card-header">{{categorie.categorie}}</div>
+    <div class="card-body">
+      <form [formGroup]="categorieForm" (ngSubmit)="onUpdateCategorie()">
+        <div class="form-group">
+          <div class="form-label-group">
+            <input type="categorie" formControlName="categorie" id="categorie" [(ngModel)]="categorie.categorie" class="form-control" placeholder="Catégorie" autofocus="autofocus">
+            <label for="categorie">Catégorie</label>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="form-label-group">
+            <textarea type="text" formControlName="description" placeholder="Description" [(ngModel)]="categorie.description" id="description" class="form-control" rows="3" autofocus="autofocus"></textarea>
+          </div>
+        </div>
+        <button class="btn btn-success btn-block" type="submit" [disabled]="categorieForm.invalid">Enregistrer</button>
+        <button class="btn btn-info btn-block" type="button" (click)="returnBack()" >Retour</button>
+      </form>
+    </div>
+  </div>
+</div>

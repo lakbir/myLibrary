@@ -1,6 +1,115 @@
 <ol class="breadcrumb">
   <li class="breadcrumb-item">
-    <a href="/mylibrary">My Library</a>
+    <a routerLink="/mylibrary">My Library</a>
   </li>
   <li class="breadcrumb-item active">Catégories</li>
 </ol>
+
+
+<div class="alert alert-dismissible fade show {{classMessageCategorie}}" role="alert" *ngIf="showOrHideMessageCategorie">
+  <p>{{messageCategorie}}</p>
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+
+  <div class="card-body">
+    <div class="table-responsive">
+      <div style="margin-bottom: 2px;padding-bottom: 2px;">
+      <div class="float-left">
+        <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="Catég..." aria-label="Search" aria-describedby="basic-addon2">
+            <div class="input-group-append">
+              <button class="btn btn-primary" type="button">
+                <i class="fas fa-search"></i>
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="float-right">
+        <button class="btn btn-sm btn-success" data-toggle="modal" data-target="#addCategorieModal"><i class="fas fa-plus"></i> Ajouter</button>
+      </div>
+      </div>
+      <table class="table table-bordered"  width="100%" >
+        <thead>
+        <tr>
+          <th>Catégorie</th>
+          <th>Description</th>
+          <th width="20%">Options</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let cat of categories; let i = index">
+          <td>{{cat.categorie}}</td>
+          <td>{{cat.description}}</td>
+          <td>
+            <button class="btn btn-sm btn-info" (click)="editerCategorie(i)"><i class="fas fa-pencil-alt"></i></button>
+            &nbsp;
+            <button class="btn btn-sm btn-danger" data-toggle="modal" (click)="setIdCategorieDeleted(i)" data-target="#deleteCategorieModal"><i class="fas fa-trash"></i></button>
+            &nbsp;
+            <button class="btn btn-sm btn-warning" (click)="showCategorie(i)"><i class="fas fa-eye"></i></button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+      <nav aria-label="Page navigation example" style="float: right;">
+        <ul class="pagination">
+          <li class="page-item"><a class="page-link" href="#">1</a></li>
+          <li class="page-item"><a class="page-link" href="#">2</a></li>
+          <li class="page-item"><a class="page-link" href="#">3</a></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+
+<div #closeModalNewCategorie class="modal fade" id="addCategorieModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Nouveau Catégorie</h5>
+        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="categorieForm" (ngSubmit)="onSaveCategorie()">
+          <div class="form-group">
+            <div class="form-label-group">
+              <input type="categorie" formControlName="categorie" id="categorie" class="form-control" placeholder="Catégorie" autofocus="autofocus">
+              <label for="categorie">Catégorie</label>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="form-label-group">
+              <textarea type="text" formControlName="description" placeholder="Description" id="description" class="form-control" rows="3" autofocus="autofocus"></textarea>
+            </div>
+          </div>
+          <button class="btn btn-success btn-block" type="submit" [disabled]="categorieForm.invalid">Enregistrer</button>
+          <button class="btn btn-info btn-block" type="submit" data-dismiss="modal" style="color: white;">Annuler</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Logout Modal-->
+<div #closeModalDeleteCategorie class="modal fade" id="deleteCategorieModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Confirmation</h5>
+        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">Êtes-vous sûr de vouloir supprimer cet catégorie ?</div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" type="button" data-dismiss="modal">Annuler</button>
+        <a class="btn btn-danger" style="cursor: pointer;color: white;" (click)="onDeleteCategorie()" data-dismiss="modal">Supprimer</a>
+      </div>
+    </div>
+  </div>
+</div>

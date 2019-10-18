@@ -24,18 +24,24 @@ import { AuteurListComponent } from './auteur/auteur-list/auteur-list.component'
 import { UserListComponent } from './user/user-list/user-list.component';
 import { MonProfileComponent } from './profile/mon-profile/mon-profile.component';
 import {CategorieListComponent} from "./categorie/categorie-list/categorie-list.component";
+import { CategorieSingleComponent } from './categorie/categorie-single/categorie-single.component';
+import { CategorieEditComponent } from './categorie/categorie-edit/categorie-edit.component';
+import { ShowProfileComponent } from './profile/show-profile/show-profile.component';
 const appRoutes: Routes = [
   {path: 'auth/signup', component: SignupComponent},
   {path: 'auth/signin', component: SigninComponent},
   {path: 'notfound', component: NotFoundComponent},
   {path: 'books', canActivate: [AuthGuardService], component: BookListComponent},
-  {path: 'monprofile', canActivate: [AuthGuardService], component: MonProfileComponent},
+  {path: 'monprofile', canActivate: [AuthGuardService], component: ShowProfileComponent},
+  {path: 'updateprofile', canActivate: [AuthGuardService], component: MonProfileComponent},
   {path: 'histoires', canActivate: [AuthGuardService], component: HistoireListComponent},
   {path: 'users', canActivate: [AuthGuardService], component: UserListComponent},
   {path: 'auteurs', canActivate: [AuthGuardService], component: AuteurListComponent},
   {path: 'articles', canActivate: [AuthGuardService], component: ArticleListComponent},
   {path: 'mylibrary', canActivate: [AuthGuardService], component: DefaultViewComponent},
   {path: 'categories', canActivate: [AuthGuardService], component: CategorieListComponent},
+  {path: 'categories/view/:id', canActivate: [AuthGuardService], component: CategorieSingleComponent},
+  {path: 'categories/edit/:id', canActivate: [AuthGuardService], component: CategorieEditComponent},
   {path: 'books/new', canActivate: [AuthGuardService], component: BookFormComponent},
   {path: 'books/view/:id', canActivate: [AuthGuardService], component: BookSingleComponent},
   {path: '', redirectTo: 'mylibrary', pathMatch: 'full'},
@@ -59,7 +65,10 @@ const appRoutes: Routes = [
     AuteurListComponent,
     UserListComponent,
     MonProfileComponent,
-    CategorieListComponent
+    CategorieListComponent,
+    CategorieSingleComponent,
+    CategorieEditComponent,
+    ShowProfileComponent
   ],
   imports: [
     BrowserModule,
