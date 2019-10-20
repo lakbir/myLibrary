@@ -55,6 +55,19 @@ export class ActorService {
     this.emitActors();
   }
   deleteActor(idAct: number) {
+    const actor = this.actors[idAct];
+    if (actor.photo) {
+      const storageRef = firebase.storage().refFromURL(actor.photo);
+      storageRef.delete().then(
+        () => {
+          console.log('Photo supprime avec success ');
+        }
+      ).catch(
+        (error) => {
+          console.log('Photo non touve : ' + error);
+        }
+      );
+    }
     this.actors.splice(idAct, 1);
     this.saveActors();
     this.emitActors();

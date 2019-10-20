@@ -1,0 +1,30 @@
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">
+    <a routerLink="/mylibrary">My Library</a>
+  </li>
+  <li class="breadcrumb-item active">
+    <a routerLink="/auteurs">Auteurs</a>
+  </li>
+  <li class="breadcrumb-item active">
+    {{actor.nom +' '+ actor.prenom}}
+  </li>
+</ol>
+<div class="card" style="width: 100%;">
+  <div class="row">
+    <div class="col-sm-9">
+  <div class="card-body">
+    <h5 class="card-title">
+      {{actor.nom +' '+ actor.prenom}}
+    </h5>
+    <p class="card-text">{{actor.description}}</p>
+  </div>
+  </div>
+    <div class="col-sm-">
+      <img [src]="actor.photo" width="200" height="200" class="rounded-circle">
+    </div>
+</div>
+  <hr />
+  <div class="d-flex justify-content-between align-items-center">
+    <button class="btn btn-primary" style="margin-left: 2%; margin-bottom: 2%;" (click)="editerActor()">Modifier</button>
+  </div>
+</div>

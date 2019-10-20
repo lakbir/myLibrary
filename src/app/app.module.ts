@@ -27,6 +27,8 @@ import {CategorieListComponent} from "./categorie/categorie-list/categorie-list.
 import { CategorieSingleComponent } from './categorie/categorie-single/categorie-single.component';
 import { CategorieEditComponent } from './categorie/categorie-edit/categorie-edit.component';
 import { ShowProfileComponent } from './profile/show-profile/show-profile.component';
+import { AuteurSingleComponent } from './auteur/auteur-single/auteur-single.component';
+import { AuteurEditComponent } from './auteur/auteur-edit/auteur-edit.component';
 const appRoutes: Routes = [
   {path: 'auth/signup', component: SignupComponent},
   {path: 'auth/signin', component: SigninComponent},
@@ -37,6 +39,8 @@ const appRoutes: Routes = [
   {path: 'histoires', canActivate: [AuthGuardService], component: HistoireListComponent},
   {path: 'users', canActivate: [AuthGuardService], component: UserListComponent},
   {path: 'auteurs', canActivate: [AuthGuardService], component: AuteurListComponent},
+  {path: 'auteurs/view/:id', canActivate: [AuthGuardService], component: AuteurSingleComponent},
+  {path: 'auteurs/edit/:id', canActivate: [AuthGuardService], component: AuteurEditComponent},
   {path: 'articles', canActivate: [AuthGuardService], component: ArticleListComponent},
   {path: 'mylibrary', canActivate: [AuthGuardService], component: DefaultViewComponent},
   {path: 'categories', canActivate: [AuthGuardService], component: CategorieListComponent},
@@ -68,7 +72,9 @@ const appRoutes: Routes = [
     CategorieListComponent,
     CategorieSingleComponent,
     CategorieEditComponent,
-    ShowProfileComponent
+    ShowProfileComponent,
+    AuteurSingleComponent,
+    AuteurEditComponent
   ],
   imports: [
     BrowserModule,
