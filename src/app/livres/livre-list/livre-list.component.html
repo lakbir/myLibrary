@@ -1,0 +1,77 @@
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">
+    <a routerLink="/mylibrary">My Library</a>
+  </li>
+  <li class="breadcrumb-item active">Livres</li>
+</ol>
+<div class="card-body">
+  <div class="table-responsive">
+    <div style="margin-bottom: 2px;padding-bottom: 2px;">
+      <div class="float-left">
+        <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="Livre..." aria-label="Search" aria-describedby="basic-addon2">
+            <div class="input-group-append">
+              <button class="btn btn-primary" type="button">
+                <i class="fas fa-search"></i>
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="float-right">
+        <button class="btn btn-sm btn-success" routerLink="/livres/new"><i class="fas fa-plus"></i> Ajouter</button>
+      </div>
+    </div>
+    <table class="table table-bordered"  width="100%" >
+      <thead>
+      <tr>
+        <th>#</th>
+        <th>Titre</th>
+        <th>Catégorie</th>
+        <th>Auteur</th>
+        <th>Date Création</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let liv of livres; let i = index">
+        <td>
+          <div class="btn-group">
+            <button type="button" class="btn btn-outline-light text-dark dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="fas fa-ellipsis-v"></i>
+            </button>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" (click)="viewLivre(i)" >Afficher</a>
+              <a class="dropdown-item" (click)="editerLivre(i)">Modifier</a>
+              <a class="dropdown-item" data-toggle="modal" (click)="setLivreDeleted(liv)" data-target="#deleteCategorieModal" >Supprimer</a>
+            </div>
+          </div>
+        </td>
+        <td>{{liv.title}}</td>
+        <td>{{liv.categorie.categorie}}</td>
+        <td>{{liv.actor.nom +' '+liv.actor.prenom}}</td>
+        <td>{{liv.dateCreate}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Logout Modal-->
+<div #closeModalDeleteLivre class="modal fade" id="deleteCategorieModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Confirmation</h5>
+        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">Êtes-vous sûr de vouloir supprimer ce Livre ?</div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" type="button" data-dismiss="modal">Annuler</button>
+        <a class="btn btn-danger" style="cursor: pointer;color: white;" (click)="onDeleteLivre()" data-dismiss="modal">Supprimer</a>
+      </div>
+    </div>
+  </div>
+</div>

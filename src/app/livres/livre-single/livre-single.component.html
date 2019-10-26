@@ -1,0 +1,37 @@
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">
+    <a routerLink="/mylibrary">My Library</a>
+  </li>
+  <li class="breadcrumb-item">
+    <a routerLink="/livres">Livres</a>
+  </li>
+  <li class="breadcrumb-item active">{{livre.title}}</li>
+</ol>
+<div class="card" style="width: 100%;">
+  <div class="row">
+    <div class="col-sm-4">
+      <div class="card-body">
+        <p class="text-capitalize"><b>Titre : </b>{{livre.title}}</p>
+        <p class="text-capitalize"><b>Catégorie : </b>{{livre.categorie.categorie}}</p>
+        <p class="text-capitalize"><b>Auteur : </b>{{livre.actor.prenom + ' ' + livre.actor.nom}}</p>
+        <p class="text-capitalize"><b>Date d'ajout : </b>{{livre.dateCreate}}</p>
+        <p class="text-capitalize"><b>Dernier modification : </b>{{livre.dateUpdate}}</p>
+        <p class="text-capitalize"><b>Ajouter par : </b>{{livre.createBy}}</p>
+
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <div class="card-body">
+      <p class="text-capitalize">{{livre.description}}</p>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <img [src]="livre.photo" width="90%" height="200" class="img-thumbnail">
+      <a class="btn btn-success pull-right" [href]="livre.fichier" target="_blank"> <span class="glyphicon glyphicon-download"></span> Consulter</a>
+    </div>
+  </div>
+  <hr />
+  <div class="d-flex justify-content-between align-items-center">
+    <button class="btn btn-primary" style="margin-left: 2%; margin-bottom: 2%; float: right;" (click)="editerLivre()">Modifier</button>
+  </div>
+</div>

@@ -1,0 +1,63 @@
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">
+    <a routerLink="/mylibrary">My Library</a>
+  </li>
+  <li class="breadcrumb-item">
+    <a routerLink="/livres">Livres</a>
+  </li>
+  <li class="breadcrumb-item active">Modifier Livre</li>
+</ol>
+<div class="card" *ngIf="isExisteLivre">
+  <form [formGroup]="reactiveForm" (ngSubmit)="onUpdateLivre()" style="margin-left: 2%; margin-top: 2%; margin-bottom: 2%; margin-right: 2%;">
+    <div class="row">
+      <div class="col-sm-8">
+        <div class="form-group">
+          <label for="titleLivre">Titre Livre</label>
+          <input type="text" class="form-control" id="titleLivre" formControlName="titleLivre" placeholder="Titre Livre" [(ngModel)]="currentLivre.title">
+          <p class="text-danger" *ngIf="titleLivre.invalid && !titleLivre.pristine">Titre est obligatoire.</p>
+        </div>
+        <div class="form-group">
+          <label for="categorie">Catégorie</label>
+          <select class="form-control" id="categorie" (change)="changeCategorie()" formControlName="categorieLivre" placeholder="Catégorie" [(ngModel)]="currentLivre.categorie">
+            <option *ngFor="let cat of categories; let i = index" [ngValue]="i" [selected]="currentLivre.categorie.categorie">{{cat.categorie}}</option>
+          </select>
+          <p class="text-danger" *ngIf="categorieLivre.invalid && !categorieLivre.pristine">Catégorie est obligatoire.</p>
+        </div>
+        <div class="form-group">
+          <label for="Auteur">Auteur</label>
+          <select class="form-control" id="Auteur" formControlName="auteurLivre" (change)="changeActor()" placeholder="Auteur" [(ngModel)]="currentLivre.actor">
+            <option *ngFor="let act of actors; let i = index" [selected]="currentLivre.actor" [value]="i">{{act.nom + ' ' + act.prenom}}</option>
+          </select>
+          <p class="text-danger" *ngIf="auteurLivre.invalid && !auteurLivre.pristine">Auteur est obligatoire.</p>
+        </div>
+        <div class="form-group">
+          <label for="description">Description</label>
+          <textarea class="form-control" id="description" formControlName="descriptionLivre" placeholder="Description" rows="3" [(ngModel)]="currentLivre.description"></textarea>
+        </div>
+        <p class="text-danger" *ngIf="descriptionLivre.invalid && !descriptionLivre.pristine">Description est obligatoire, 30 caractere au minimum.</p>
+      </div>
+      <div class="col-sm-4">
+        <div class="form-group">
+          <label for="fichierLivre">Livre (PDF)</label>
+          <input type="file" (change)="detectDocs($event)" class="form-control" [(ngModel)]="currentLivre.fichier" id="fichierLivre" accept="application/pdf" >
+          <p class="text-success" *ngIf="docUploaded">Livre charge avec success</p>
+        </div>
+
+        <div class="form-group">
+          <img [src]="fileUrl" width="90%" height="200" class="img-thumbnail">
+          <label for="photoLivre">Image</label>
+          <input type="file" (change)="detectFiles($event)" id="photoLivre" [(ngModel)]="currentLivre.photo" class="form-control" accept="image/*" >
+          <p class="text-success" *ngIf="fileUploaded">Image charge avec success</p>
+        </div>
+      </div>
+    </div>
+    <button class="btn btn-primary" type="submit" style="float: right; margin-right: 2%;" [disabled]="!reactiveForm.valid" >Enregister</button>
+  </form>
+</div>
+<div class="card" *ngIf="!isExisteLivre">
+  <div class="progress">
+    <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+      <span class="sr-only">40% effectué (success)</span>
+    </div>
+  </div>
+</div>

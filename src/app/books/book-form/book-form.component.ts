@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {BooksService} from "../../services/books.service";
 import {Router} from "@angular/router";
 import {BookModule} from "../../models/book.module";
+import {UploadService} from "../../services/upload.service";
 
 @Component({
   selector: 'app-book-form',
@@ -21,6 +22,7 @@ export class BookFormComponent implements OnInit {
   docUploaded = false;
   constructor(private formBuilder: FormBuilder,
               private booksService: BooksService,
+              private uploadService: UploadService,
               private router: Router) { }
 
   ngOnInit() {
@@ -51,7 +53,7 @@ export class BookFormComponent implements OnInit {
 
   onUploadFile(file: File) {
     this.fileIsUploading = true;
-    this.booksService.uploadFile(file).then(
+    this.uploadService.uploadFile(file).then(
       (url: string) => {
         this.fileUrl = url;
         this.fileIsUploading = false;
@@ -65,7 +67,7 @@ export class BookFormComponent implements OnInit {
 
   onUploadDoc(file: File) {
     this.docIsUploading = true;
-    this.booksService.uploadDoc(file).then(
+    this.uploadService.uploadLivre(file, 'Livres/').then(
       (url: string) => {
         this.docUrl = url;
         this.docIsUploading = false;
