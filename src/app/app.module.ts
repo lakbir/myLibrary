@@ -15,7 +15,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {RouterModule, Routes} from '@angular/router';
 import { DefaultViewComponent } from './default-view/default-view.component';
-import {NotFoundComponent} from "./not-found/not-found.component";
+import {NotFoundComponent} from './not-found/not-found.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { ArticleListComponent } from './article/article-list/article-list.component';
@@ -23,7 +23,7 @@ import { HistoireListComponent } from './histoire/histoire-list/histoire-list.co
 import { AuteurListComponent } from './auteur/auteur-list/auteur-list.component';
 import { UserListComponent } from './user/user-list/user-list.component';
 import { MonProfileComponent } from './profile/mon-profile/mon-profile.component';
-import {CategorieListComponent} from "./categorie/categorie-list/categorie-list.component";
+import {CategorieListComponent} from './categorie/categorie-list/categorie-list.component';
 import { CategorieSingleComponent } from './categorie/categorie-single/categorie-single.component';
 import { CategorieEditComponent } from './categorie/categorie-edit/categorie-edit.component';
 import { ShowProfileComponent } from './profile/show-profile/show-profile.component';
@@ -31,9 +31,11 @@ import { AuteurSingleComponent } from './auteur/auteur-single/auteur-single.comp
 import { AuteurEditComponent } from './auteur/auteur-edit/auteur-edit.component';
 import { LivreSingleComponent } from './livres/livre-single/livre-single.component';
 import { LivreFormComponent } from './livres/livre-form/livre-form.component';
-import {LivreListComponent} from "./livres/livre-list/livre-list.component";
-import {UploadService} from "./services/upload.service";
+import {LivreListComponent} from './livres/livre-list/livre-list.component';
+import {UploadService} from './services/upload.service';
 import { LivreEditComponent } from './livres/livre-edit/livre-edit.component';
+import { ArticleEditComponent } from './article/article-edit/article-edit.component';
+import { ArticleSingleComponent } from './article/article-single/article-single.component';
 const appRoutes: Routes = [
   {path: 'auth/signup', component: SignupComponent},
   {path: 'auth/signin', component: SigninComponent},
@@ -46,6 +48,8 @@ const appRoutes: Routes = [
   {path: 'auteurs/view/:id', canActivate: [AuthGuardService], component: AuteurSingleComponent},
   {path: 'auteurs/edit/:id', canActivate: [AuthGuardService], component: AuteurEditComponent},
   {path: 'articles', canActivate: [AuthGuardService], component: ArticleListComponent},
+  {path: 'articles/edit/:idArticle', canActivate: [AuthGuardService], component: ArticleEditComponent},
+  {path: 'articles/view/:idArticle', canActivate: [AuthGuardService], component: ArticleSingleComponent},
   {path: 'mylibrary', canActivate: [AuthGuardService], component: DefaultViewComponent},
   {path: 'categories', canActivate: [AuthGuardService], component: CategorieListComponent},
   {path: 'categories/view/:id', canActivate: [AuthGuardService], component: CategorieSingleComponent},
@@ -54,9 +58,6 @@ const appRoutes: Routes = [
   {path: 'livres/new', canActivate: [AuthGuardService], component: LivreFormComponent},
   {path: 'livres/view/:idLivre', canActivate: [AuthGuardService], component: LivreSingleComponent},
   {path: 'livres/edit/:idLivre', canActivate: [AuthGuardService], component: LivreEditComponent},
-  {path: 'books', canActivate: [AuthGuardService], component: BookListComponent},
-  {path: 'books/new', canActivate: [AuthGuardService], component: BookFormComponent},
-  {path: 'books/view/:id', canActivate: [AuthGuardService], component: BookSingleComponent},
   {path: '', redirectTo: 'mylibrary', pathMatch: 'full'},
   {path: '**', redirectTo: 'notfound'}
 ];
@@ -87,14 +88,17 @@ const appRoutes: Routes = [
     LivreSingleComponent,
     LivreFormComponent,
     LivreListComponent,
-    LivreEditComponent
+    LivreEditComponent,
+    ArticleEditComponent,
+    ArticleSingleComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    ReactiveFormsModule.withConfig({warnOnNgModelWithFormControl: 'never'})
   ],
   providers: [
     AuthService,

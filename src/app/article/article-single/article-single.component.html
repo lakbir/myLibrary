@@ -1,0 +1,38 @@
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">
+    <a routerLink="/mylibrary">My Library</a>
+  </li>
+  <li class="breadcrumb-item">
+    <a routerLink="/articles">Articles</a>
+  </li>
+  <li class="breadcrumb-item active" *ngIf="currentArticle">{{currentArticle.title}}</li>
+</ol>
+<div class="card" style="width: 100%;" *ngIf="currentArticle">
+  <div class="row">
+    <div class="col-sm-9">
+      <div class="card-body">
+        <h5 class="card-title">
+          {{currentArticle.title}}
+        </h5>
+        <p class="card-text">{{currentArticle.article}}</p>
+      </div>
+      <table class="table table-sm">
+        <tbody>
+        <tr>
+          <td><small> Catégorie : {{currentArticle.categorie.categorie}}</small></td>
+          <td><small>Par : {{currentArticle.createBy}}</small></td>
+          <td><small>Date création : {{currentArticle.dateCreate}}</small></td>
+          <td><small>Modifié : {{currentArticle.dateUpdate}}</small></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-sm-3">
+      <img [src]="currentArticle.photo" width="200" height="200" class="rounded-circle">
+    </div>
+  </div>
+  <hr />
+  <div class="d-flex justify-content-between align-items-center">
+    <button class="btn btn-primary" style="margin-left: 2%; margin-bottom: 2%;" (click)="editerArticle()">Modifier</button>
+  </div>
+</div>
